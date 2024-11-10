@@ -94,7 +94,7 @@ The six files are:
         - Each digit represents the shortest path distance to a target article.
         - An underscore (`_`) indicates that the target cannot be reached from the source.
         - The longest shortest path length is 9, so each distance can be represented as a single digit.
-          - **Any paths longer than 9 do not exist or are unreachable**.
+          - Any paths longer than 9 do not exist or are unreachable.
       * **Floyd-Warshall Algorithm**: Distances are precomputed using the Floyd-Warshall algorithm, ensuring shortest-path distances between all pairs of articles.
       * Example:
 
