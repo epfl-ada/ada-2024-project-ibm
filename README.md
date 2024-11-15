@@ -7,8 +7,8 @@
 
 ```bash
 # clone project
-git clone <project link>
-cd <project repo>
+git clone https://github.com/epfl-ada/ada-2024-project-ibm.git
+
 
 # create conda environment that fulfills requirements
 conda env create -f environment.yml
