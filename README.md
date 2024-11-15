@@ -78,7 +78,7 @@ No additional datasets are proposed at this stage. However, if needed, we could 
 
 * Deeper analysis of isolated categories
 * Investigate user behaviour with path analysis
-  * Both tasks will be carried out simulateneously by different team members and results will be promptly shared in order to help establish new possible correlations and potential analysis in the other research area.
+  * Both tasks will be carried out simultaneously by different team members and results will be promptly shared in order to help establish new possible correlations and potential analysis in the other research area.
 
 ---
 
