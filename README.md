@@ -1,5 +1,89 @@
 # ADA 2024 Project P2
 
+
+## *Unfinished Stories: What Wikispeedia Reveals About Us*
+
+#### Quickstart
+
+```bash
+# clone project
+git clone <project link>
+cd <project repo>
+
+# create conda environment that fulfills requirements
+conda env create -f environment.yml
+
+
+```
+
+#### How to use the library
+
+*results.ipynb* stores the main findings achieved until the moment; the remaining files were the different analysis have been carried out have been included in the *.gitignore* file.
+
+To simulate findings of *results.ipynb* simply run code, having installed the necessary dependencies listed in the .yml file and having stored the dataset files, and data loading and utilities in their corresponding directories, as described below.
+
+#### Project Structure
+
+
+```
+├── data                        <- Dataset files
+│
+├── src                         <- Source code
+│   ├── data                            <- Data loading and preprocessing functions
+│   ├── utils                           <- Funtions related to other functionalities
+├── results.ipynb               <- notebook summarizing the results
+│
+├── .gitignore                  <- List of files ignored by git
+├── environment.yml             <- File for installing python dependencies
+└── README.md
+```</pre>
+```
+
+## Abstract
+
+This project investigates why users quit the Wikispeedia game—a Wikipedia-based game where users navigate from one article to another using only hyperlinks. By analyzing metrics such as centrality and PageRank in relation to the abandonment rate and topic difficulty, we aim to understand the behaviour of users and their 'quitting' behaviours.
+
+## Research Questions
+
+1. What factors contribute to the difficulty of navigation tasks in Wikispeedia, and how are these related to abandonment rates?
+2. How do graph metrics (e.g., PageRank, closeness centrality) correlate with the likelihood of quitting a gama?
+3. Which topics or categories (e.g., "Countries," "Everyday Life") exhibit higher abandonment rates, and what are the potential reasons?
+4. How do different types of users and their familiarity with topics/game strategies affect the navigation path and completion rates?
+
+## Proposed Additional Datasets
+
+No additional datasets are proposed at this stage. However, if needed, we could explore Wikipedia data to obtain more information regarding topics and articles connectivity.
+
+## Methods
+
+* **Data preprocessing** : filtered, categorized, and restructured data to standardize article properties, ensuring accuracy in hierarchical categories.
+
+  **Data dimension**: have realized limitations due to dimensions of dataset: certain tests and hypothesis cannot be evaluated due to relatively low count and diversity of specific articles in available games. In addition, the connectivity of articles is limited (does not really reflect all semantinc possibilities for associations with other articles, as Wikipedia dataset would).
+
+  The most important modification has been duplicate handling for articles with various categories :
+
+  1. Retained  "Countries" over "Geography" for articles in both, prioritizing country-specific detail.
+  2. Reclassification of historical figures : moved historically significant figures from "People" to categories like "History" or "Science," leaving "People" focused on modern pop culture figures.
+  3. Hierarchy ranking: established a category ranking (e.g., "Everyday Life" > "Language and Literature") to handle duplicates and ensure consistent categorization.
+* **Target category correlations** : performed log-log regression to evaluate the relationship between topic difficulty and the proportion of unfinished games, analyzing differences between categories.
+
+  * Future work: **Deeper analysis of isolated categories**
+    * Examine assumptions around specificity (e.g., "Novels" or "Films") versus generality (e.g., "Countries") in difficulty and 'quitting', testing these statistical tests; analyse categories with low average difficulty , but high quitting rates.
+* **Graph analysis**: calculated structural metrics such as degree centrality, PageRank, closeness centrality, and betweenness centrality, associating them with each article and its category.
+
+  * Future work: **Investigate user behaviour with path analysis**
+    * Analyze patterns of users in game with respect to graph: whether users usually follow shortest paths or explore suboptimal routes, study transitions between categories, analyze variations in paths users take for the same start etc...
+
+## Proposed Timeline for Remaining Weeks
+
+* Deeper analysis of isolated categories
+* Investigate user behaviour with path analysis
+  * Both tasks will be carried out simulateneously by different team members and results will be promptly shared in order to help establish new possible correlations and potential analysis in the other research area.
+
+---
+
+### Appendix: dataset description
+
 The **Wikispeedia** dataset is composed by six files, all of which are structured similarly:
 
 1. **Metadata**: initial lines of comments starting with `#` , which provide information about data stored.
