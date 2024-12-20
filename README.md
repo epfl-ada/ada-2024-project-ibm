@@ -7,8 +7,8 @@
 
 ```bash
 # clone project
-git clone <project link>
-cd <project repo>
+git clone https://github.com/epfl-ada/ada-2024-project-ibm.git
+
 
 # create conda environment that fulfills requirements
 conda env create -f environment.yml
@@ -78,7 +78,7 @@ No additional datasets are proposed at this stage. However, if needed, we could 
 
 * Deeper analysis of isolated categories
 * Investigate user behaviour with path analysis
-  * Both tasks will be carried out simulateneously by different team members and results will be promptly shared in order to help establish new possible correlations and potential analysis in the other research area.
+  * Both tasks will be carried out simultaneously by different team members and results will be promptly shared in order to help establish new possible correlations and potential analysis in the other research area.
 
 ---
 
