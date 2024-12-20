@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Quitter's Quest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Retro Screen -->
+  <div class="screen">
+    
+    
+
+    <!-- Title -->
+    <div class="title">The Quitter's Quest</div>
+
+    <!-- Introduction -->
+    <div class="section" id="introduction">
+      <h2> Embarking on a  Quest </h2>
+      <p>
+        Once upon a time, noble knights embarked on a legendary journey, known as
+        <b>  Wikispeedia  </b>. Their quest? Armed only with their wit, 
+        they ougth to navigate through a labyrinth of articles 
+        to reach their destination.
+      </p>
+    However, not all of the adventurers emerged victorous; many of them succumbed  
+    in the face of adversity and their own frustation. These poors souls became known as <b> quitters </b>. 
+    <p>
+        Was their lack of skill and perseverance that sealed their fate? Or was it the sheer difficulty of their quest?
+        This project <b> The Quitter's Quest</b> seeks to not only find answer to these questions, but uncover the tricks of 
+        the <b>Bias Enchantress</b>. 
+    </p>
+
+   
+    <div class="legend-section">
+      <h3 class="legend-title"> </h3>
+      <div class="legend-content">
+        <div class="legend-icon">
+          <img src="images/sorcerer.PNG" alt="Sorcerer's Deception Icon" />
+        </div>
+        <p class="legend-intro">
+          The <b>Bias Enchantress</b> icon appears whenever potential biases could skew analysis, reminding us to look deeper in search of the truth.
+        </p>
+      </div>
+    </div>
+    
+        
+
+</div>
+
+    <!-- Analysis -->
+    <div class="section" id="analysis">
+      <h2>The Dataset </h2>
+      <h3>A Chronicle of Victors and Vanquished  </h3>
+      The objective of the quest is clear; given a <b>source article</b> reach the specified <b>target 
+        article </b>, using as few clicks as possible. Every article is linked to others through <b>hyperlinks</b>.
+      <p>
+        In the archives of the kingdom lies a record of every adventurer’s journey:
+      </p>
+      <ul>
+        <li> <b>Finished quest/games</b>: players reached the target article from a source article successfully.</li>
+        <li> <b>Unfinished quest/games</b>: players did not reach the target article. </li>
+      </ul>
+      
+      <p>
+        To understand why some fail and others succeed, we must determine whether
+    <b>success</b> is dependent on the <b>player's choices</b>,
+    or on the <b>difficulty</b> of the game he faces?
+</p>
+However, given a specific quest (a source and a target), 
+how can one estimate its difficulty? 
+To answer this, <b>we need a metric to evaluate the true challenge of a path</b>.  
+      
+      <h3>The Difficulty Conundrum</h3>
+
+        <p>
+            We began our quest by exploring <b>player-estimated difficulty</b>.
+            Whenever players completed a game,  they rated how challenging they found it.
+              but we still lack a <b>metric that
+             can extend to all games</b>, whether completed or abandoned.
+          </p> 
+           
+              To address this, we aim to test potential metrics that capture the difficulty of a path. 
+              Our approach is to group all games—both finished and unfinished—according to the metric being tested. 
+              For each group, we calculate:
+            </p>
+            <ul>
+              <li><b>Estimated difficulty:</b> The average difficulty rating given by players who completed games in the group.</li>
+              <li><b>Failure ratio:</b> The proportion of unfinished games relative to all games in the group.</li>
+            </ul>
+            <p>
+              By plotting these groups, comparing the estimated difficulty of finished games against the failure ratio, we can evaluate the effectiveness of the metric. 
+              A strong correlation between player-estimated difficulty and the failure ratio would indicate that the metric successfully captures the inherent challenge of a path.
+            </p>
+            <p>
+              This approach allows us to explore not only the nature of difficulty but also how it varies across groups of games. 
+
+            </p>
+    </div>
+
+  
+
+        <div class="section" id="target category">
+            <h2> Level 1: Adventuring into the Kingdom</h2>
+            <p> Intuitively, one might resort to the <b>target</b> to explain the difficulty of a game;
+              specially its <b>category</b>, the area of knowledge it belongs to. 
+           </p>
+              <div style="text-align: center; padding: 10px">
+                <iframe src="html_plots/categories_regression/categories_regression_1_reversed.html" width="100%" height="600px" style="border:none;"></iframe>
+             </div>
+         
+          <h3> Key Insights  </h3>
+          <p>
+          <ul>
+              <li>The categories <b>People </b> and <b>Everyday Life</b> rank high in both difficulty and the proportion of unfinished games.</li>
+                <ul>
+              <li> <b>People </b>  includes modern, popular figures. Without specific knowledge about them, players face challenges finding paths.</li>
+              <li> <b>Everyday Life</b>  consists of specific concepts that might not have obvious or direct connections (e.g., Book → Bean) </li>
+                  </ul>
+              <li> <b>Countries </b> and <b>Geography</b>  rank low in in both difficulty and unfinished game rates.
+              <ul>
+                 <li> These categories are easier to navigate, with hierarchical connections (e.g., France → Europe → Paris) and general cultural knowledge aiding players.  </li>
+              </ul>
+              </li>
+              </ul>
+              </p>
+            </div>
+                <!-- Visualizations -->
+    <div class="section" id="target subcategory">
+        <h2> Level 2: Traversing the Dark Forest  </h2>
+        <p> Although a relation has been found between target's category and dificulty, we can
+          one step further and analyze its <b>subcategory</b> in an attempt to find a better correlation.
+       </p>
+          <div style="text-align: center; padding: 10px">
+              <iframe src="html_plots/categories_regression/subcategories_regression_1_reversed.html" width="100%" height="600px" style="border:none;"></iframe>
+         </div>
+    
+        
+        <div class="illusion-section">
+          <h3> The Survivor's Tale</h3>
+          <div class="deception-icon">
+            <img src="images/sorcerer.PNG" alt="Sorcerer's Deception Icon" />
+          </div>
+            <p class="illusion-intro">
+              A curious observation arises: <b>Recent History</b> shows a high proportion of unfinished games 
+              but a low difficulty rating, while <b>General History</b> has fewer dropouts. 
+              Are adventurers more knowledgeable about <b>General History</b> than <b>Recent History</b>?
+            </p>
+            <div class="illusion-paths">
+              Surprisingly, no. A considerable portion of articles in <b>Recent History</b> have high dropout rates (e.g., Hannibal Barca, 
+              Jyllands-Posten Muhammad cartoons controversy). In the few games that have been finished, the articles may appear <b>deceptively easy</b> because only
+               the most determined or knowledgeable managed to complete them-skewing the difficulty rating.
+            </div>
+          <p class="illusion-summary">
+            To account for this, we filtered target articles with at least two finished games per unfinished one:
+            <b>We do obtain a better fitted regression line!</b>
+            <p>
+            
+           </p>
+          </p>
+          <div style="text-align: center; padding: 10px">
+            <iframe src="html_plots/categories_regression/subcategories_regression_2_reversed.html" width="100%" height="600px" style="border:none;"></iframe>
+        </div>
+        </div>
+
+    
+
+<h3>
+    Key Insights
+</h3>
+<p>
+    Similarly to before:
+    <ul>
+        <li> More <b>comparmentalized subcategories</b> (e.g; <b>Novels </b>, <b> Railway Transport</b>) rank high in both difficulty and the proportion of unfinished games.</li>
+
+        <li>  More <b>'general-knowledge'</b> subcategories (e.g;  <b>Languages</b>, <b>European Geography</b>, <b>USA Presidents</b>) rank low in in both difficulty and unfinished game rates,
+
+        </ul>
+        </li>
+        </p>
+
+        While variability remains, we've uncovered an important insight: concepts with more connections-easier to link-
+        provide a less challenging path to navigate through. 
+</ul>
+</div>
+        
+  <!-- Conclusion -->
+  <div class="section" id="shortest path">
+    <h2>Level 3: Delving into the Labyrinth</h2>
+    <p>
+      To evaluate the linkability of articles:
+      <ol>
+      <li> We model a <b>graph</b>, where articles are represented as nodes, and links between 
+      them form the edges. 
+    </li>
+  <li>
+We then calculate the <b>shortest path length</b>
+  between all source and target combinations played in the game. </li>
+</ol>
+</p>
+
+  <!-- Retro Text Box -->
+  
+  <div class="retro-box">
+    <div class="image-container">
+      <img src="images/path_videogame.PNG" alt="Character" />
+    </div>
+    <div class="text-container">
+      <b>Hint:</b> The shortest path length is the number of nodes connecting the two articles along 
+      the shortest possible route!
+    </div>
+  </div>
+  <p>
+    <div class="centered">
+     <p><b>What do we observe?</b>
+    </div>
+</p>
+<p>
+Unfinished games have a higher median and maximum shortest 
+    path length compared to finished games!
+  </p> 
+  
+
+
+    <div style="text-align: center; padding: 10px">
+        <iframe src="html_plots/boxplots_finished_unfinished.html" width="100%" height="600px" style="border:none;"></iframe>
+     </div>
+     <div class="centered">
+     <p>
+      <b>Could this be the metric we had been searching for?</b>
+    </div>
+  </p>
+
+  <p>
+   Indeed, there is almost a  <b>perfect correlation</b> between the ratio of unfinished games and estimated difficulty
+    for games according to shortest path length.
+  </p>
+      <div style="text-align: center; padding: 10px">
+        <iframe src="html_plots/difficulty_vs_unfinished_ratio_with_colorbar.html" width="100%" height="600px" style="border:none;"></iframe>
+     </div>
+    
+
+  At last, we have uncovered a <b>metric</b> that allows us to compare games based on their <b>'objective' difficulty</b>. 
+  With this newfound knowledge, the maze begins to take shape, and we quickly arrive at the oracle's lair.
+    
+</div>
+
+
+    <div class="section" id=" node metrics">
+      <h2> Level 4: The Oracle's Counsel </h2>
+      <div class="ornate-dialogue">
+        <div class="portrait-frame">
+          <img src="images/oracle.PNG" alt="Oracle Portrait" />
+        </div>
+        <div class="text-frame">
+          <div class="character-name">Oracle</div>
+          <hr class="divider" />
+          <class="dialogue-text">
+          Your path is not defined by its length alone. The power lies within the nodes you tread.
+            Seek them, and master the labyrinth, you shall.
+          
+        </div>
+      </div>
+      <p>
+      The oracle's riddle inspires us to study how the properties of the nodes between the source and target vary across these shortest paths, according
+      to two metrics: <b>PageRank</b> and <b>closeness centrality</b>.
+    </p>
+    <h3> Unlocking the Labyrinth's Secrets</h3>
+     
+        <div style="text-align: center; padding: 10px">
+          <iframe src="html_plots/graph_pagerank_closeness.html" width="100%" height="600px" style="border:none;"></iframe>
+       </div>
+<h3>Key Insights</h3>
+       <ul>
+        <li> Both metrics start low, peak at the second or third node, and then decrease till the target. </li>
+          
+
+<li><b>PageRank:</b> peaks early as path goes through globally influential hub articles that bridge regions of the graph between source and target. After these hubs, it drops sharply.</li>
+
+
+<li> <b>Closeness centrality:</b> declines more gradually, reflecting that intermediate nodes, while less globally influential, remain well-connected locally. </li> 
+
+ </ul>
+<h3>Into the Depths of the Labyrinth</h3>
+  The differences between the metrics highlight how <b>finding the target becomes increasingly challenging as the shortest path lengthens</b>.
+
+  <p>
+   While <b>PageRank</b> remains consistently low for nodes along longer paths, indicating a lack of influential connections;
+    <b>closeness centrality</b> shows a progressive decline.
+  </p> 
+    <p>
+    This reveals that each successive node in the path becomes less connected to the rest of the graph, forcing players onto a more constrained and isolated route.
+    
+  </p> 
+
+
+    
+<div class="illusion-section">
+  <h3> The Homogeneity Mirage</h3>
+  <div class="deception-icon">
+    <img src="images/sorcerer.PNG" alt="Sorcerer's Deception Icon" />
+  </div>
+    <p class="illusion-intro">
+      One might assume that all paths with the same shortest length share similar characteristics. For example, the shortest paths have higher initial and final <b>PageRank</b> and <b>closeness centrality</b>. 
+    </p>
+    <div class="illusion-paths">
+      However, this assumption is misleading.
+      These metrics' evolutions only represent median attributes along the path, and, as such, do no reflect all possible cases: 
+    <ul style="color: #b9e8ff;">
+      <li>  Some shorter paths arise because the source and target are close to each other in a locally connected region of the network.</li>
+    
+      <li>  Others are short because both source and target lie near a global hub.</li>
+    </ul>
+  </div>
+  <p class="illusion-summary">
+    Ultimately, the focus is not on these metrics themselves but on understanding <b>how difficult the game feels for players</b>, regardless of the underlying reasons. 
+    This is why path length is such a powerful measure—it <b>captures both the effects of local and global connectivity</b> .
+  </p>
+</div>
+
+<div class="section" id="battle-prep">
+  <h2>Level 5: The Knight’s Assembly </h2>
+  <p>
+    Before we face the final challenge, let's take a moment to ensure our analysis makes sense. We’ll study human games, both finished and unfinished, grouped by source-target combinations that have a specific shortest path length.
+  </p>
+  
+    For example, a path with source and target: 'King Arthur' and 'Root Beer' might have a shortest path of 5. Yet, two players can complete the journey differently—one in 4 steps, the other in 6.
+
+  <p>
+   For each level of difficulty (shortest path length), we will plot how the players traverse the path's nodes as a function of <b>closeness centrality</b>. 
+  </p>
+
+  <div style="text-align: center; padding: 10px">
+    <iframe src="html_plots/closeness_all_shortest_paths.html" width="100%" height="600px" style="border:none;"></iframe>
+ </div>
+  <p>
+   We observe that, in most cases, <b>finished games tend to have longer paths than unfinished ones</b>! This makes sense: players who finish often persist and explore more.
+  </p> 
+    
+    
+    
+    <div class="illusion-section">
+      <h3> The Illusion of Numbers </h3>
+      <div class="deception-icon">
+        <img src="images/sorcerer.PNG" alt="Sorcerer's Deception Icon" />
+      </div>
+        <p class="illusion-intro">
+          However, something unexpected can be observed for games with shortest path length of 4: these games appear to have longer completed paths than those with a shortest path length of 5.
+          The same occurs for shortest paths of length 5 and 6, rspectively.
+
+
+        </p>
+        <div class="illusion-paths">
+          When we examine the data, we find a significant imbalance in the number of games played for each shortest path length (<b>sampling bias</b>):
+          
+<ul style="color: #b9e8ff;">
+  <li>There are far more games with shortest path length 4 than with 5; and with length 5 than 6. </li>
+  <li>   This increases the probability of encountering games with unusually long completed paths, making longer paths seem more common than they truly are for path length 4.</li>
+</ul>
+          
+      <p class="illusion-summary">
+        We perform a subsample of 1,000 games for both shortest path lengths 4 and 5. Now, the results align with expectations:
+        <p>
+        <b>More difficult games, as reflected by longer shortest paths, tend to result in longer completed paths</b>.
+      </p>
+      </p>
+      <div style="text-align: center; padding: 10px">
+        <iframe src="html_plots/subsampling_length_4_5.html" width="100%" height="600px" style="border:none;"></iframe>
+     </div>
+    </div>
+    
+    
+</div>
+
+
+
+
+
+
+
+</div>
+
+<div class="section" id="players behaviour">
+  <h2> Level 6: The Battle Royale </h2>
+<p>
+  The final battle is upon us—a test to distinguish the quitters from the conquerors.
+   The battlefield? <b>Shortest path length 5 games</b>, known for their higher difficulty. 
+  </p>
+  <div class="centered">
+    <p>
+     <b> Let's analyze the key metrics!</b>
+   </div>
+  </p>
+  
+
+   <h3>PageRank and Closeness Centrality: The Critical Node</h3>
+
+   <div style="text-align: center; padding: 10px">
+    <iframe src="html_plots/closeness_length_5.html" width="100%" height="600px" style="border:none;"></iframe>
+ </div>
+ <div style="text-align: center; padding: 10px">
+  <iframe src="html_plots/pagerank_5.html" width="100%" height="600px" style="border:none;"></iframe>
+</div>
+
+  <ul>
+   <li><b>Common Strategy</b></li>
+   <ul>  <li> All players progress from low-ranked nodes (source) to higher-ranked ones,
+    before advancing to nodes with lower values for both metrics. </li></ul> 
+  
+  <li><b>Victors</b></li>
+  <ul>
+    <li><b>Key to Success</b></li>
+    <ul>
+    <li>Successful players locate a <b>critical article/node</b>—a node with <b>sufficiently low closeness centrality and PageRank</b> that leads directly to the target; often the penultimate
+      or antepenultimate node.
+ <li>Once this node is found, conceptual connections to the target seem to become relatively simple.</li>
+</li>
+</ul>
+   <li><b>Good vs Mediocre Players</b></li>
+   <ul>
+
+ <li>
+<b>Good players</b> (those completing the game in fewer steps) reach the critical node quicker.
+ </li> 
+ <li> For <b>mediocre players</b> the
+  metrics of the nodes visited decrease more or less steadily along the path.</li>
+</ul>
+<li><b>
+  Quitters
+</b></li>
+<ul>
+  <li> Unsuccessful players are able to locate influential nodes and begin decreasing in metrics. </li>
+  <li> They <b>fail to find the critical node </b>that leads to the target.</li>
+</ul>
+  </ul>
+
+
+  <h3>The Enigma of the Vanquished: Lost on the Path to the Target</h3>
+<p></p>
+    The <b>steady decrease in metrics</b> along the paths of unsusccesful players suggests that, had they continued searching, <b> they might have eventually found the target</b>.
+    Or perhaps, they may have explored paths that, while more specialized, were not conceptually connected to the target.
+  </p>
+  To understand this dynamic better, we analyze the <b>distance to the target along the paths</b>:
+
+  <div style="text-align: center; padding: 10px">
+    <iframe src="html_plots/distance_to_target.html" width="100%" height="600px" style="border:none;"></iframe>
+ </div>
+
+  <p>
+    For both type of players, there is often a <b>phase of stagnation</b>—remaining at the same distance to the target. 
+    Here is where the key lies:
+  </p>
+<ul>
+  <li>
+<b>Successful players</b> eventually locate the <b>critical</b> node. From that node on, the distance to the target decreases steadily.
+  </li>
+
+  <li>
+ <b>Unsusccesful players</b> simply circle near the target without identifying the critical node.
+  </li>
+</ul>
+
+  
+</div>
+
+<div class="section" id="players behaviour">
+  <h2> Level 7: The Victor's Banquet </h2>
+  <p>
+  The labyrinth reaches its conclusion. The Battle Royale has separated true champions from the defeated. 
+  We have seen the <b> the outcome is shaped, not only by the adventurer's qualities, but also by the difficulty of the path he faces</b> .
+
+ Nonetheless, success is no accident. The <b>victors</b> relied on one of two strengths—or both:
+  
+ <lu>
+    <li><b>Efficient navigation</b></li>
+    <li><b>Persistence</b></li>
+  </lu>
+</p>
+<p>
+  Their virtues are praised as they are welcomed to the feast of champions.
+  Meanwhile, the <b>quitters</b> are left behind, lost in the heart of the labyrinth. It was their lack of wit and determination that sealed their fate.
+</p>
+</div>
+
+<div class="game-section">
+  <h2>Preparing for the Next Quest</h2>
+  <p>The next quest invites us to study how players' knowledge influence their ability to navigate different thematic areas. </p>
+
+  <div class="card-container">
+    <!-- Warrior Card -->
+    <div class="player-card">
+      <h3 class="card-title">Warrior</h3>
+      <div class="card-image">
+        <img src="images/warrior.PNG" alt="Warrior" />
+      </div>
+      <p class="card-description">The Warrior is strong, driven by a strong grasp on reality; but may fail when faced with abstract topics.</p>
+      <ul class="strengths">
+        <li><b>Strengths:</b> Geography, History</li>
+      </ul>
+      <ul class="weaknesses">
+        <li><b>Weaknesses:</b> Religion, Phylosophy</li>
+      </ul>
+    </div>
+
+    <!-- Healer Card -->
+    <div class="player-card">
+      <h3 class="card-title">Healer</h3>
+      <div class="card-image">
+        <img src="images/healer.PNG" alt="Healer" />
+      </div>
+      <p class="card-description">The Healer lacks an artistic sensibility that she compensates by excelling in scientific disciiplines </p>
+      <ul class="strengths">
+        <li><b>Strengths:</b> Biology, Chemistry</li>
+      </ul>
+      <ul class="weaknesses">
+        <li><b>Weaknesses:</b> Religion, Music</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
