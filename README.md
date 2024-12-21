@@ -2,6 +2,8 @@
 
 ## *The Quitter's Quest*
 
+Website with Data Story: https://epfl-ada.github.io/ada-2024-project-ibm/
+
 #### Quickstart
 
 ```bash
