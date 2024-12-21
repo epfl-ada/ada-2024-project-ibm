@@ -1,8 +1,8 @@
 # ADA 2024 Project P3
 
-## *The Quitter's Quest*
-
-Website with Data Story: https://epfl-ada.github.io/ada-2024-project-ibm/
+## *The Quitter's Quest* 
+- Creators: Beatriz Izquierdo (beatriz.izquierdogonzalez@epfl.ch) and Marc Gombau (marc.gombauirotllan@epfl.ch)
+- Website with Data Story: https://epfl-ada.github.io/ada-2024-project-ibm/
 
 #### Quickstart
 
