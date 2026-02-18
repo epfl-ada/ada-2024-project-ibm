@@ -1,12 +1,143 @@
+/* =========================================================
+   Dungeon Scroll + Torches 
+   ========================================================= */
+
+:root{
+  --torch-spacing: 820;      /* px between torches vertically */
+  --torch-width: 120px;       /* torch size */
+  --torch-offset-x: 22px;    /* distance from edge */
+  --parallax-factor: 0.65;   /* used by JS if you add it */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background: #000; /* fallback */
+  color: #ffcc00;
+
+  /* Keep your custom cursor */
+  cursor: url('https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/82ef76196b64dcf.png'), auto;
+
+  /* You used flex to center the .screen; keep it,
+     but we’ll center INSIDE #dungeon instead. */
+  display: block;
+}
+
+
+#dungeon{
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+
+  background-image: url("images/dungeon_wall.png");
+  background-repeat: repeat-y;
+  background-position: center 0px;
+  background-size: 100% auto;
+
+  overflow: hidden; /* keeps overlays clean at edges */
+}
+
+/* purple color grade + vignette + flicker */
+#dungeon::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  /* 3 layers: purple wash + subtle blue/pink glow + vignette */
+  background:
+    radial-gradient(circle at 50% 20%, rgba(163,40,245,0.20), transparent 55%),
+    radial-gradient(circle at 50% 85%, rgba(255,102,204,0.10), transparent 60%),
+    radial-gradient(circle at center, rgba(0,0,0,0.05), rgba(0,0,0,0.55));
+
+  mix-blend-mode: screen;   /* makes the tint feel like light */
+  opacity: 0.85;
+}
+
+/* optional: add a little “grain” so the grade feels less flat */
+#dungeon::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+
+
+
+/* Torch layer (JS will populate many torches) */
+#torches{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+.torch{
+  position: absolute;
+  width: var(--torch-width);
+  height: auto;
+  image-rendering: pixelated;
+  opacity: 0.95;
+
+  filter:
+    drop-shadow(0 0 14px rgba(255,140,0,0.75))
+    drop-shadow(0 0 32px rgba(255,90,0,0.30))
+    drop-shadow(0 0 22px rgba(255,102,204,0.28)); /* NEW: magenta glow */
+}
+
+
+/* Torches at viewport edges */
+.torch.left  { 
+  left: calc(var(--torch-offset-x) + 20px); 
+}
+
+.torch.right { 
+  right: calc(var(--torch-offset-x) + 10px); 
+  transform: scaleX(-1);
+}
+
+/* Tiny flicker for ambience */
+@keyframes dungeon-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.97; }
+  60% { opacity: 0.99; }
+  70% { opacity: 0.96; }
+}
+
+
+.torch{
+  animation: torch-flicker 1.15s infinite steps(2, end);
+  transform-origin: center;
+}
+
+
+
+
+/* =========================================================
+    ORIGINAL STYLES 
+   ========================================================= */
 
 /* General Body Styling */
 .centered {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 2vh; /* This makes it take up the full viewport height */
-  text-align: center; /* Centers text inside the container */
+  height: auto;          
+  text-align: center;
+  margin: 10px 0;
 }
+
 .game-section {
   background: radial-gradient(circle, #2a0244, #5e0f86);
   padding: 30px;
@@ -50,7 +181,7 @@ h2 {
 .card-image img {
   width: 50%;
   height: auto;
-  border-radius:15px;
+  border-radius: 15px;
   margin-bottom: 15px;
 }
 
@@ -70,31 +201,31 @@ h2 {
 .strengths li,
 .weaknesses li {
   font-size: 1.1em;
-  color: #05ac66; /* Green for strengths */
+  color: #05ac66;
 }
 
 .weaknesses li {
-  color: #9c0b0b; /* Red for weaknesses */
+  color: #9c0b0b;
 }
 
 .legend-section {
-  background: radial-gradient(circle, #8b28e4, #2a0244); /* Vibrant purple to deep violet for mystical effect */
-  border: 4px solid #0b24c7; /* Blue border for thematic contrast */
-  border-radius: 20px; /* Softer, more elegant rounding */
-  padding: 5px 25px 25px 25px;;
+  background: radial-gradient(circle, #8b28e4, #2a0244);
+  border: 4px solid #0b24c7;
+  border-radius: 20px;
+  padding: 5px 25px 25px 25px;
   font-family: 'Press Start 2P', sans-serif;
   font-size: 14px;
-  color: #ffffff; /* White text for strong readability */
+  color: #ffffff;
   max-width: 800px;
   margin: 10px auto;
-  box-shadow: 0 0 25px #4db9f8; /* Blue glow for magical emphasis */
+  box-shadow: 0 0 25px #4db9f8;
 }
 
 .legend-title {
   text-align: center;
-  font-size: 2em; /* Larger for prominence */
-  color: #1d0c59; /* Deep blue for emphasis */
-  text-shadow: 0 0 10px #15d7e5, 0 0 20px #07a4ff; /* Bright blue glow */
+  font-size: 2em;
+  color: #1d0c59;
+  text-shadow: 0 0 10px #15d7e5, 0 0 20px #07a4ff;
   margin-bottom: 25px;
 }
 
@@ -102,254 +233,222 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 20px; /* Space between icon and text */
+  gap: 20px;
   text-align: left;
 }
 
 .legend-icon img {
-  width: 80px; /* Slightly larger for emphasis */
+  width: 80px;
   height: 80px;
-  border-radius: 50%; /* Circular icon for a polished look */
-  border: 6px solid #180968; /* Deep blue border */
-  box-shadow: 0 0 15px #1bc0e6; /* Glow effect to highlight the deception */
+  border-radius: 50%;
+  border: 6px solid #180968;
+  box-shadow: 0 0 15px #1bc0e6;
 }
 
 .legend-intro {
   font-size: 1.1em;
-  color: #e0e0e0; /* Light gray for softer readability */
-  line-height: 1.6; /* Improve readability */
+  color: #e0e0e0;
+  line-height: 1.6;
   margin: 0;
 }
 
-
 .deception-icon {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .deception-icon img {
-    width: 70px; /* Adjust icon size */
-    height: 70px;
-    border-radius: 50%; /* Circular icon */
-    border: 3px solid #0b0ec9; /* Golden border to emphasize */
-    padding: 0px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid #0b0ec9;
+  padding: 0px;
 }
-
-
 
 .illusion-summary {
-    text-align: center;
-    font-size: 1.2em;
-    font-style: italic;
-    margin-top: 15px;
-    color: #1ce08e; /* Bright green for emphasis */
+  text-align: center;
+  font-size: 1.2em;
+  font-style: italic;
+  margin-top: 15px;
+  color: #1ce08e;
 }
+
 .illusion-section {
-    background: radial-gradient(circle, #8b28e4, #2a0244); /* Vibrant purple to deep violet for mystical effect */
-    border: 4px solid #0b24c7; /* Blue border for thematic contrast */
-    border-radius: 20px; /* Softer, more elegant rounding */
-    padding: 25px;
-    font-family: 'Press Start 2P', sans-serif;
-    font-size: 14px;
-    color: #ffffff; /* White text for strong readability */
-    max-width: 800px;
-    margin: 30px auto;
-    box-shadow: 0 0 25px #4db9f8; /* Blue glow for magical emphasis */
+  background: radial-gradient(circle, #8b28e4, #2a0244);
+  border: 4px solid #0b24c7;
+  border-radius: 20px;
+  padding: 25px;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  max-width: 800px;
+  margin: 30px auto;
+  box-shadow: 0 0 25px #4db9f8;
 }
 
 .illusion-section h3 {
-    text-align: center;
-    font-size: 2em; /* Larger for more prominence */
-    color: #1d0c59; /* Bright yellow for a magical glow */
-    text-shadow: 0 0 10px #15d7e5, 0 0 20px #07a4ff; /* Golden glow for mystic effect */
-    margin-bottom: 25px;
+  text-align: center;
+  font-size: 2em;
+  color: #1d0c59;
+  text-shadow: 0 0 10px #15d7e5, 0 0 20px #07a4ff;
+  margin-bottom: 25px;
 }
 
-
-
 .deception-icon img {
-    width: 80px; /* Slightly larger for more emphasis */
-    height: 80px;
-    border-radius: 50%; /* Circular icon for a polished look */
-    border: 6px solid #180968; /* Golden border for magic */
-    
-    box-shadow: 0 0 15px #1bc0e6; /* Glow effect to highlight the deception */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 6px solid #180968;
+  box-shadow: 0 0 15px #1bc0e6;
 }
 
 .illusion-intro {
-    text-align: justify;
-    font-size: 1.1em;
-    color: #e0e0e0; /* Light gray for softer readability */
-    margin-bottom: 20px;
+  text-align: justify;
+  font-size: 1.1em;
+  color: #e0e0e0;
+  margin-bottom: 20px;
 }
 
 .illusion-paths {
-    color: #b9e8ff; /* Soft blue for better harmony with the theme */
-    list-style: none;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    line-height: 1.6; /* Improve readability */
-    margin-bottom: 15px;
+  color: #b9e8ff;
+  list-style: none;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
-
-
-
-
 .ornate-dialogue {
-    display: flex;
-    align-items: center;
-    background: #5e0f86; /* Deep purple background */
-    border: 4px solid #b9417d; /* Bright pink border */
-    padding: 15px;
-    font-family: 'VT323', sans-serif; /* Retro pixel font */
-    font-size: 20px;
-    color: #e78a3f; /* Retro orange text */
-    max-width: 700px;
-    margin: 20px auto;
-    border-radius: 10px; /* Slightly rounded corners */
-    box-shadow: 0 0 15px #e01ca2; /* Glowing pink effect */
-    position: relative;
-  }
-  
-  .portrait-frame {
-    flex: 0 0 100px; /* Fixed size for portrait */
-    background: #340560; /* Dark purple placeholder for portrait */
-    border: 4px solid#b9417d; /* Pink border */
-    margin-right: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px; /* Rounded portrait corners */
-  }
-  
-  .portrait-frame img {
-    width: 100px; /* Ensure consistent size */
-    height: 100px;
-    object-fit: cover; /* Maintain aspect ratio */
-    border-radius: 8px; /* Slight rounding for image */
-  }
-  
-  .text-frame {
-    flex: 1; /* Text takes up remaining space */
-    background: #3b065e; /* Darker purple for text frame */
-    border: 4px solid #b9417d; /* Pink border for text box */
-    padding: 10px;
-    border-radius: 10px; /* Rounded text box corners */
-    position: relative;
-    color: #ffffff; /* White text for contrast */
-  }
-  
-  .character-name {
-    font-size: 16px; /* Name slightly larger */
-    font-family: 'Press Start 2P', sans-serif; /* Retro pixel font */
-    margin-bottom: 5px;
-    color: #ff99cc; /* Bright pink for the name */
-    text-align: center; /* Center-align name */
-    text-transform: uppercase; /* Uppercase for retro feel */
-  }
-  
-  .divider {
-    border: none;
-    border-top: 2px solid #b9417d; /* Subtle pink line */
-    margin: 5px 0; /* Space around the line */
-  }
-  
-  .dialogue-text {
-    margin: 0;
-    line-height: 1.6; /* Improve readability */
-    font-size: 12px; /* Smaller text for dialogue */
-    color: #e78a3f; /* Orange text for retro aesthetic */
-  }
-  
+  display: flex;
+  align-items: center;
+  background: #5e0f86;
+  border: 4px solid #b9417d;
+  padding: 15px;
+  font-family: 'VT323', sans-serif;
+  font-size: 20px;
+  color: #e78a3f;
+  max-width: 700px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #e01ca2;
+  position: relative;
+}
 
+.portrait-frame {
+  flex: 0 0 100px;
+  background: #340560;
+  border: 4px solid #b9417d;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
 
+.portrait-frame img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
 
+.text-frame {
+  flex: 1;
+  background: #3b065e;
+  border: 4px solid #b9417d;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+  color: #ffffff;
+}
 
+.character-name {
+  font-size: 16px;
+  font-family: 'Press Start 2P', sans-serif;
+  margin-bottom: 5px;
+  color: #ff99cc;
+  text-align: center;
+  text-transform: uppercase;
+}
 
+.divider {
+  border: none;
+  border-top: 2px solid #b9417d;
+  margin: 5px 0;
+}
+
+.dialogue-text {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 12px;
+  color: #e78a3f;
+}
 
 .retro-box {
-background: #5e0f86; /* Teal background */
-color: #e78a3f; /* Black text for contrast */
-border: 4px solid #b9417d;
-padding: 10px;
-font-family: 'Press Start 2P', sans-serif; /* Retro pixel font */
-font-size: 12px; /* Smaller text size for retro feel */
-max-width: 600px; /* Adjust width to fit content */
-margin: 20px auto; /* Center the box */
-position: relative; /* For potential pseudo-elements or overlays */
-display: flex; /* Side-by-side layout for image and text */
-align-items: center; /* Vertically align image and text */
-box-shadow: 0 0 10px #e01ca2; /* Glowing border effect */
-border-radius: 8px; /* Optional rounded corners */
+  background: #5e0f86;
+  color: #e78a3f;
+  border: 4px solid #b9417d;
+  padding: 10px;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 12px;
+  max-width: 600px;
+  margin: 20px auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 10px #e01ca2;
+  border-radius: 8px;
 }
 
 .image-container {
-flex: 0 0 80px; /* Fixed width for the image */
-margin-right: 10px; /* Space between the image and text */
+  flex: 0 0 80px;
+  margin-right: 10px;
 }
 
 .image-container img {
-width: 90px; /* Match the fixed width */
-height: 90px; /* Ensure the image is square */
-object-fit: cover; /* Maintain proportions */
-border: 2px solid #b9417d; /* Add a white border around the image */
-border-radius: 20%; /* Make the image circular */
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border: 2px solid #b9417d;
+  border-radius: 20%;
 }
 
 .text-container {
-flex: 1; /* Take the remaining space for the text */
+  flex: 1;
 }
 
 .text-container p {
-margin: 0;
-line-height: 1.5; /* Improve text spacing */
-color: #ffffff; /* Ensure text is white */
+  margin: 0;
+  line-height: 1.5;
+  color: #ffffff;
 }
 
-
-body {
-font-family: 'Poppins', sans-serif;
-background: #340560;
-margin: 0;
-padding: 0;
-color: #ffcc00;
-display: flex;
-justify-content: center;
-align-items: flex-start; /* Allow content to grow vertically */
-min-height: 100vh;
-cursor: url('https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/82ef76196b64dcf.png'), auto;
-}
-
-@keyframes background-scroll {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 50px 50px;
-  }
-}
-
-/* Screen Frame Styling */
+/* Screen Frame Styling (your original) */
 .screen {
-background: linear-gradient(to bottom, #440092, #a328f5);
-border: 8px solid #dc77e3;
-border-radius: 20px;
-box-shadow: 0 0 10px #4e2a84;
-width: 95%;
-max-width: 1000px;
-height: auto; /* Adjust height to content */
-padding: 20px;
-text-align: left;
-margin: 20px auto; /* Center with space on top */
+  position: relative;
+  z-index: 3;
+
+  width: 95%;
+  max-width: 1000px;
+  margin: 20px auto;
+  background: linear-gradient(to bottom, rgba(68,0,146,0.92), rgba(163,40,245,0.92));
+  backdrop-filter: blur(1px);
+  border: 8px solid #dc77e3;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #4e2a84;
+  height: auto;
+  padding: 20px;
+  text-align: left;
 }
+
+
 .title {
   font-family: 'Press Start 2P', sans-serif;
   font-size: 2.5rem;
   color: #ffcc00;
   text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff6600, 0 0 30px #ff3300;
-  margin-bottom: 20px; /* Add space below the title */
+  margin-bottom: 20px;
   text-align: center;
   animation: flicker 1.5s infinite;
 }
@@ -360,9 +459,8 @@ margin: 20px auto; /* Center with space on top */
   100% { opacity: 1; }
 }
 
-/* Section Styling */
 .section {
-  margin-bottom: 20px; /* Add space between sections */
+  margin-bottom: 20px;
   padding: 10px;
 }
 
@@ -377,7 +475,7 @@ margin: 20px auto; /* Center with space on top */
 .section p {
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
-  line-height: 1.6; /* Improve text spacing */
+  line-height: 1.6;
   color: #ffffff;
 }
 
@@ -389,9 +487,6 @@ margin: 20px auto; /* Center with space on top */
   padding-left: 20px;
 }
 
-
-
-/* Footer */
 footer {
   margin-top: 20px;
   font-size: 0.8rem;
@@ -399,7 +494,6 @@ footer {
   text-align: center;
 }
 
-/* Retro Pixel Sprites */
 .sprite {
   position: absolute;
   top: 20px;
@@ -409,3 +503,4 @@ footer {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/38/Heart_pixel_art.gif');
   background-size: cover;
 }
+
