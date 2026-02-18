@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="dungeon">
+  <div id="torches" aria-hidden="true"></div>
   <!-- Retro Screen -->
   <div class="screen">
     
@@ -24,14 +26,14 @@
       <p>
         Once upon a time, noble knights embarked on a legendary journey, known as
         <b>  Wikispeedia  </b>. Their quest? Armed only with their wit, 
-        they ougth to navigate through a labyrinth of articles 
+        they ought to navigate through a labyrinth of articles 
         to reach their destination.
       </p>
-    However, not all of the adventurers emerged victorous; many of them succumbed  
-    in the face of adversity and their own frustation. These poors souls became known as <b> quitters </b>. 
+    However, not all of the adventurers emerged victorious; many of them succumbed  
+    in the face of adversity and their own frustration. These poor souls became known as <b> quitters </b>. 
     <p>
         Was their lack of skill and perseverance that sealed their fate? Or was it the sheer difficulty of their quest?
-        This project <b> The Quitter's Quest</b> seeks to not only find answer to these questions, but uncover the tricks of 
+        This project <b> The Quitter's Quest</b> seeks to not only find answers to these questions, but uncover the tricks of 
         the <b>Bias Enchantress</b>. 
     </p>
 
@@ -85,7 +87,7 @@ To answer this, <b>we need a metric to evaluate the true challenge of a path</b>
           </p> 
            
               To address this, we aim to test potential metrics that capture the difficulty of a path. 
-              Our approach is to group all games—both finished and unfinished—according to the metric being tested. 
+              Our approach is to group all games, both finished and unfinished, according to the metric being tested. 
               For each group, we calculate:
             </p>
             <ul>
@@ -121,7 +123,7 @@ To answer this, <b>we need a metric to evaluate the true challenge of a path</b>
               <li> <b>People </b>  includes modern, popular figures. Without specific knowledge about them, players face challenges finding paths.</li>
               <li> <b>Everyday Life</b>  consists of specific concepts that might not have obvious or direct connections (e.g., Book → Bean) </li>
                   </ul>
-              <li> <b>Countries </b> and <b>Geography</b>  rank low in in both difficulty and unfinished game rates.
+              <li> <b>Countries </b> and <b>Geography</b>  rank low in both difficulty and unfinished game rates.
               <ul>
                  <li> These categories are easier to navigate, with hierarchical connections (e.g., France → Europe → Paris) and general cultural knowledge aiding players.  </li>
               </ul>
@@ -132,7 +134,7 @@ To answer this, <b>we need a metric to evaluate the true challenge of a path</b>
                 <!-- Visualizations -->
     <div class="section" id="target subcategory">
         <h2> Level 2: Traversing the Dark Forest  </h2>
-        <p> Although a relation has been found between target's category and dificulty, we can
+        <p> Although a relation has been found between target's category and difficulty, we can
           one step further and analyze its <b>subcategory</b> in an attempt to find a better correlation.
        </p>
           <div style="text-align: center; padding: 10px">
@@ -175,7 +177,7 @@ To answer this, <b>we need a metric to evaluate the true challenge of a path</b>
 <p>
     Similarly to before:
     <ul>
-        <li> More <b>comparmentalized subcategories</b> (e.g; <b>Novels </b>, <b> Railway Transport</b>) rank high in both difficulty and the proportion of unfinished games.</li>
+        <li> More <b>compartmentalized subcategories</b> (e.g; <b>Novels </b>, <b> Railway Transport</b>) rank high in both difficulty and the proportion of unfinished games.</li>
 
         <li>  More <b>'general-knowledge'</b> subcategories (e.g;  <b>Languages</b>, <b>European Geography</b>, <b>USA Presidents</b>) rank low in in both difficulty and unfinished game rates,
 
@@ -318,7 +320,7 @@ Unfinished games have a higher median and maximum shortest
   </div>
   <p class="illusion-summary">
     Ultimately, the focus is not on these metrics themselves but on understanding <b>how difficult the game feels for players</b>, regardless of the underlying reasons. 
-    This is why path length is such a powerful measure—it <b>captures both the effects of local and global connectivity</b> .
+    This is why path length is such a powerful measure; it <b>captures both the effects of local and global connectivity</b> .
   </p>
 </div>
 
@@ -328,7 +330,7 @@ Unfinished games have a higher median and maximum shortest
     Before we face the final challenge, let's take a moment to ensure our analysis makes sense. We’ll study human games, both finished and unfinished, grouped by source-target combinations that have a specific shortest path length.
   </p>
   
-    For example, a path with source and target: 'King Arthur' and 'Root Beer' might have a shortest path of 5. Yet, two players can complete the journey differently—one in 4 steps, the other in 6.
+    For example, a path with source and target: 'King Arthur' and 'Root Beer' might have a shortest path of 5. Yet, two players can complete the journey differently, e.g., one in 7 steps, the other in 6.
 
   <p>
    For each level of difficulty (shortest path length), we will plot how the players traverse the path's nodes as a function of <b>closeness centrality</b>. 
@@ -350,7 +352,7 @@ Unfinished games have a higher median and maximum shortest
       </div>
         <p class="illusion-intro">
           However, something unexpected can be observed for games with shortest path length of 4: these games appear to have longer completed paths than those with a shortest path length of 5.
-          The same occurs for shortest paths of length 5 and 6, rspectively.
+          The same occurs for shortest paths of length 5 and 6, respectively.
 
 
         </p>
@@ -387,7 +389,7 @@ Unfinished games have a higher median and maximum shortest
 <div class="section" id="players behaviour">
   <h2> Level 6: The Battle Royale </h2>
 <p>
-  The final battle is upon us—a test to distinguish the quitters from the conquerors.
+  The final battle is upon us, a test to distinguish the quitters from the conquerors.
    The battlefield? <b>Shortest path length 5 games</b>, known for their higher difficulty. 
   </p>
   <div class="centered">
@@ -405,53 +407,91 @@ Unfinished games have a higher median and maximum shortest
  <div style="text-align: center; padding: 10px">
   <iframe src="html_plots/pagerank_5.html" width="100%" height="600px" style="border:none;"></iframe>
 </div>
+<h3>Key Insights</h3>
 
-  <ul>
-   <li><b>Common Strategy</b></li>
-   <ul>  <li> All players progress from low-ranked nodes (source) to higher-ranked ones,
-    before advancing to nodes with lower values for both metrics. </li></ul> 
-  
-  <li><b>Victors</b></li>
-  <ul>
-    <li><b>Key to Success</b></li>
-    <ul>
-    <li>Successful players locate a <b>critical article/node</b>—a node with <b>sufficiently low closeness centrality and PageRank</b> that leads directly to the target; often the penultimate
-      or antepenultimate node.
- <li>Once this node is found, conceptual connections to the target seem to become relatively simple.</li>
-</li>
-</ul>
-   <li><b>Good vs Mediocre Players</b></li>
-   <ul>
-
- <li>
-<b>Good players</b> (those completing the game in fewer steps) reach the critical node quicker.
- </li> 
- <li> For <b>mediocre players</b> the
-  metrics of the nodes visited decrease more or less steadily along the path.</li>
-</ul>
-<li><b>
-  Quitters
-</b></li>
 <ul>
-  <li> Unsuccessful players are able to locate influential nodes and begin decreasing in metrics. </li>
-  <li> They <b>fail to find the critical node </b>that leads to the target.</li>
+
+  <li>
+    <b>Common Strategy</b>
+    <ul>
+      <li>
+        All players progress from low-ranked nodes (source) to higher-ranked ones,
+        before advancing to nodes with lower values for both metrics.
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <b>Victors</b>
+    <ul>
+
+      <li>
+        <b>Key to Success</b>
+        <ul>
+          <li>
+            Successful players locate a <b>critical article/node</b>, a node with
+            <b>sufficiently low closeness centrality and PageRank</b> that leads
+            directly to the target—often the penultimate or antepenultimate node.
+          </li>
+          <li>
+            Once this node is found, conceptual connections to the target
+            become relatively simple.
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <b>Good vs Mediocre Players</b>
+        <ul>
+          <li>
+            <b>Good players</b> (those completing the game in fewer steps)
+            reach the critical node more quickly.
+          </li>
+          <li>
+            For <b>mediocre players</b>, the metrics of the nodes visited
+            decrease more or less steadily along the path.
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </li>
+
+  <li>
+    <b>Quitters</b>
+    <ul>
+      <li>
+        Unsuccessful players locate influential nodes and begin decreasing in metrics.
+      </li>
+      <li>
+        They <b>fail to find the critical node</b> that leads to the target.
+      </li>
+    </ul>
+  </li>
+
 </ul>
-  </ul>
 
+<h3>The Enigma of the Vanquished: Lost on the Path to the Target</h3>
 
-  <h3>The Enigma of the Vanquished: Lost on the Path to the Target</h3>
-<p></p>
-    The <b>steady decrease in metrics</b> along the paths of unsusccesful players suggests that, had they continued searching, <b> they might have eventually found the target</b>.
-    Or perhaps, they may have explored paths that, while more specialized, were not conceptually connected to the target.
-  </p>
-  To understand this dynamic better, we analyze the <b>distance to the target along the paths</b>:
+<p>
+  The <b>steady decrease in metrics</b> along the paths of unsuccessful players
+  suggests that, had they continued searching, they might have eventually found the target.
+  Alternatively, they may have explored paths that, while more specialized,
+  were not conceptually connected to the target.
+</p>
+
+<p>
+  To understand this dynamic better, we analyze the
+  <b>distance to the target along the paths</b>.
+</p>
+
 
   <div style="text-align: center; padding: 10px">
     <iframe src="html_plots/distance_to_target.html" width="100%" height="600px" style="border:none;"></iframe>
  </div>
 
   <p>
-    For both type of players, there is often a <b>phase of stagnation</b>—remaining at the same distance to the target. 
+    For both type of players, there is often a <b>phase of stagnation</b>, remaining at the same distance to the target. 
     Here is where the key lies:
   </p>
 <ul>
@@ -460,7 +500,7 @@ Unfinished games have a higher median and maximum shortest
   </li>
 
   <li>
- <b>Unsusccesful players</b> simply circle near the target without identifying the critical node.
+ <b>Unsuccessful players</b> simply circle near the target without identifying the critical node.
   </li>
 </ul>
 
@@ -473,12 +513,12 @@ Unfinished games have a higher median and maximum shortest
   The labyrinth reaches its conclusion. The Battle Royale has separated true champions from the defeated. 
   We have seen the <b> the outcome is shaped, not only by the adventurer's qualities, but also by the difficulty of the path he faces</b> .
 
- Nonetheless, success is no accident. The <b>victors</b> relied on one of two strengths—or both:
+ Nonetheless, success is no accident. The <b>victors</b> relied on one of two strengths, or both:
   
- <lu>
+ <ul>
     <li><b>Efficient navigation</b></li>
     <li><b>Persistence</b></li>
-  </lu>
+ </ul>
 </p>
 <p>
   Their virtues are praised as they are welcomed to the feast of champions.
@@ -502,7 +542,7 @@ Unfinished games have a higher median and maximum shortest
         <li><b>Strengths:</b> Geography, History</li>
       </ul>
       <ul class="weaknesses">
-        <li><b>Weaknesses:</b> Religion, Phylosophy</li>
+        <li><b>Weaknesses:</b> Religion, Philosophy</li>
       </ul>
     </div>
 
@@ -512,7 +552,7 @@ Unfinished games have a higher median and maximum shortest
       <div class="card-image">
         <img src="images/healer.PNG" alt="Healer" />
       </div>
-      <p class="card-description">The Healer lacks an artistic sensibility that she compensates by excelling in scientific disciiplines </p>
+      <p class="card-description">The Healer lacks an artistic sensibility that she compensates by excelling in scientific disciplines </p>
       <ul class="strengths">
         <li><b>Strengths:</b> Biology, Chemistry</li>
       </ul>
@@ -522,6 +562,83 @@ Unfinished games have a higher median and maximum shortest
     </div>
   </div>
 </div>
+
+
+</div> <!-- end .screen -->
+</div>   <!-- end #dungeon -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const dungeon = document.getElementById("dungeon");
+  const torchesLayer = document.getElementById("torches");
+
+  function pxVar(name, fallback = 520) {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const n = Number(v);
+    return Number.isFinite(n) ? n : fallback;
+  }
+
+  function buildTorches() {
+    torchesLayer.innerHTML = "";
+    const spacing = pxVar("--torch-spacing", 520);
+    const height = dungeon.scrollHeight;
+    const count = Math.ceil(height / spacing);
+
+    for (let i = 0; i < count; i++) {
+      const y = i * spacing + 120;
+
+      const left = document.createElement("img");
+      left.src = "images/torch_2_c.gif";
+      left.className = "torch left";
+      left.style.top = `${y}px`;
+
+      const right = document.createElement("img");
+      right.src = "images/torch_2_c.gif";
+      right.className = "torch right";
+      right.style.top = `${y}px`;
+
+      torchesLayer.appendChild(left);
+      torchesLayer.appendChild(right);
+    }
+  }
+
+  // ---- smooth scroll-linked updates (RAF) ----
+  const factor = 0.15;
+  let latestScrollY = 0;
+  let rafId = 0;
+
+  function applyParallax() {
+    rafId = 0;
+    const y = latestScrollY * factor;
+
+    // Keep this if you want the wall to move:
+    dungeon.style.backgroundPosition = `center ${y}px`;
+
+  }
+
+  function onScroll() {
+    latestScrollY = window.scrollY || window.pageYOffset;
+    if (!rafId) rafId = requestAnimationFrame(applyParallax);
+  }
+
+  buildTorches();
+  onScroll();
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => {
+    buildTorches();
+    onScroll();
+  });
+});
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
 
 
 
